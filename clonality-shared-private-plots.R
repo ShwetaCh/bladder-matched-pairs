@@ -10,7 +10,7 @@ status_order<-c("met.location","type.treatment","time.between")
 cli_info$key=factor(cli_info$key,level=c(unique(cli_info$key)))
 cli_info$value=factor(cli_info$value,level=c(unique(cli_info$value)))
 cli_info$patient.id<-factor(cli_info$patient.id)
-patient.order<-cli_info$patient.id
+patient.order<-levels(unique(cli_info$patient.id)); patient.order
 
 color_map<- c("#D9D9D9","#969696", "#FFF7EC","#FDD49E","#FC8D59","#D7301F","#7F0000","#DEEBF7" ,"#9ECAE1", "#4292C6", "#08519C")
 track<- ggplot(cli_info, aes(x=patient.id,y=key))+ 
