@@ -43,5 +43,12 @@ dim(wesids); head(wesids) #SampleID
 wessamplelevel_pure = filter(wessamplelevel, !(LOW_PURITY == TRUE), !(sample %like% 's_C_001601'), !(sample %like% 's_C_001390'))
 Private(wessamplelevel_pure$PTN)
 
+wes_cohort = fread('~/kdm6a_paper/final_WES_cohort_kdm6a.txt') %>% filter(WES == "Y") %>% select(`CMO WES data`, `CMO_paths`, `CMO Sample ID (WES)`)
+names(wes_cohort)
+length(unique(wes_cohort$`Matched Pair #`)) #25
+length(unique(wes_cohort$`DMP Patient ID`)) #25
+length(unique(wes_cohort$`IMPACT Sample ID`)) #51
+length(unique(wes_cohort$`CMO WES data`)) #11 batches
+
 ##Multiple samples
 multi = wessamplelevel %>% group_by(PTN) %>% dplyr::dplyr::summarise(total = n()) %>% filter(total > 2) %>% select(PTN)
