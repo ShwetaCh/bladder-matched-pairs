@@ -26,6 +26,12 @@ dim(wesqc_align); head(wesqc_align) #Sample T
 #filter(wesqc_align, MeanTargetCoverage <=50)
 filter(wesqc_align, Sample %like% '_N0',  MedianTargetCoverage <=45) #Exclude this pair s_C_001390_N001_d	s_C_001390_M001_d, N coverage is 18.
 filter(wesqc_align, !(Sample %like% '_N0'),  MedianTargetCoverage <=70) #Exclude s_C_001390_M001_d is 52.
+> filter(wesqc_align, Sample %like% '_N0') %>% select(MedianTargetCoverage) %>% summarise(cov = mean(MedianTargetCoverage))
+       cov
+1 86.59259
+> filter(wesqc_align, !Sample %like% '_N0') %>% select(MedianTargetCoverage) %>% summarise(cov = mean(MedianTargetCoverage))
+     cov
+1 151.66
 
 wesqc_concor = fread('/Users/chavans/juno/work/ccs/ccs_wes/Proj_07871_DFLOQ/Result/qc/concordance_qc.txt')
 dim(wesqc_concor); head(wesqc_concor) #Sample T_N
