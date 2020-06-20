@@ -1,2 +1,2 @@
 # bladder-matched-pairs
-All code for the paper
+All code for the bladder paper
